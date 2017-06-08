@@ -21,17 +21,25 @@
 			<section id="header">
 				<header class="major">
 					<h1>Jobs Site by Jasper Lyons</h1>
-					<p>A fun little { responsive } single pager by <a href="http://html5up.net">HTML5 UP</a></p>
-				</header>
+				</header> 
 				<div class="container">
 					<ul class="actions">
-						<li><a href="#one" class="button special scrolly">Begin</a></li>
+						<li><a onclick="showPostForm()" class="button special scrolly">Make Post</a></li>
+						<form id="post_form" style="opacity:0; height:0px; transition: 7s;" method="post">
+							{% csrf_token %}
+							<br>
+							<input type="text" placeholder="Enter Your Job Title" name="title">
+							<br>
+							<input type="text" placeholder="Write A Short Description" name="description">
+							<br>
+							<button type="submit" class="button special scrolly">Submit</button>
+						</form>
 					</ul>
 				</div>
 			</section>
 
 		<!-- One -->
-			{% for job_post in job_posts %}
+			{% for job_post in job_posts reversed %}
 			<section id="one" class="main special">
 				<div class="container">
 					<span class="image fit primary"><img src="images/pic01.jpg" alt="" /></span>
@@ -82,7 +90,8 @@
 			</section>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
+			<script src="{% static 'jobs_app/assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'jobs_app/assets/js/our_script.js' %}"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
